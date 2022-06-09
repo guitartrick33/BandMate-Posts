@@ -51,12 +51,7 @@ public class PostController {
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        if(posts.isEmpty()) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "No posts found"), HttpStatus.NOT_FOUND);
-        } else {
             return new ResponseEntity<>(new ResponseWithMessage<>(posts, null), HttpStatus.OK);
-        }
     }
 
     @GetMapping(path = "{id}")
@@ -69,12 +64,7 @@ public class PostController {
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        if(result.isEmpty()) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post not found"), HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(new ResponseWithMessage<>(result, null), HttpStatus.OK);
-        }
+        return new ResponseEntity<>(new ResponseWithMessage<>(result, null), HttpStatus.OK);
     }
 
     @GetMapping(params = "username")
@@ -89,11 +79,7 @@ public class PostController {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        if(results.isEmpty()) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "No answers found for this user"), HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(new ResponseWithMessage<>(results, null), HttpStatus.OK);
-        }
+        return new ResponseEntity<>(new ResponseWithMessage<>(results, null), HttpStatus.OK);
     }
 
     @PostMapping

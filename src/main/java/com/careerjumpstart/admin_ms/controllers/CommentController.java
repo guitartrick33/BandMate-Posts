@@ -74,12 +74,7 @@ public class CommentController {
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        if(result.isEmpty()) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post not found"), HttpStatus.NOT_FOUND);
-        } else {
             return new ResponseEntity<>(new ResponseWithMessage<>(result, null), HttpStatus.OK);
-        }
     }
 
     @GetMapping(params = "username")
@@ -93,12 +88,7 @@ public class CommentController {
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        if(results.isEmpty()) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "No posts found for this user"), HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(new ResponseWithMessage<>(results, null), HttpStatus.OK);
-        }
+        return new ResponseEntity<>(new ResponseWithMessage<>(results, null), HttpStatus.OK);
     }
 
     @GetMapping(path = "/post/{id}")
@@ -111,12 +101,7 @@ public class CommentController {
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        if(result.isEmpty()) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post not found"), HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(new ResponseWithMessage<>(result, null), HttpStatus.OK);
-        }
+        return new ResponseEntity<>(new ResponseWithMessage<>(result, null), HttpStatus.OK);
     }
 
     @PostMapping
