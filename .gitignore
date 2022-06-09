@@ -33,6 +33,6 @@ build/
 .vscode/
 
 ### envs ###
-src/main/resources/application.properties
-src/main/resources/secrets.properties
+#src/main/resources/application.properties
+#src/main/resources/secrets.properties
 
