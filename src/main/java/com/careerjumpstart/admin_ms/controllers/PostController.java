@@ -47,13 +47,13 @@ public class PostController {
         try {
             posts = postService.findAll();
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answers repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Posts repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         if(posts.isEmpty()) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "No answers found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "No posts found"), HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(new ResponseWithMessage<>(posts, null), HttpStatus.OK);
         }
@@ -65,13 +65,13 @@ public class PostController {
         try {
             result = postService.findById(id);
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answer repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         if(result.isEmpty()) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answer not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post not found"), HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(new ResponseWithMessage<>(result, null), HttpStatus.OK);
         }
@@ -84,7 +84,7 @@ public class PostController {
         try {
             results = postService.findByUsername(username);
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answers repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -105,9 +105,9 @@ public class PostController {
             }
             post.setUsername(username);
             Post newPost = postService.createPost(post);
-            return new ResponseEntity<>(new ResponseWithMessage<>(newPost, "Answer successfully created"), HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseWithMessage<>(newPost, "Post successfully created"), HttpStatus.OK);
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answers repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Posts repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (Exception e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -119,12 +119,12 @@ public class PostController {
         try {
             if(postService.exists(id)) {
                 Post updatedPost = postService.updatePost(id, post);
-                return new ResponseEntity<>(new ResponseWithMessage<>(updatedPost, "Answer successfully updated"), HttpStatus.OK);
+                return new ResponseEntity<>(new ResponseWithMessage<>(updatedPost, "Post successfully updated"), HttpStatus.OK);
             } else {
-                return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answer not found"), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post not found"), HttpStatus.NOT_FOUND);
             }
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answers repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -137,12 +137,12 @@ public class PostController {
         try {
             if(postService.exists(id)) {
                 postService.deletePost(id);
-                return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answer successfully deleted"), HttpStatus.OK);
+                return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post successfully deleted"), HttpStatus.OK);
             } else {
-                return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answer not found"), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post not found"), HttpStatus.NOT_FOUND);
             }
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answers repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }

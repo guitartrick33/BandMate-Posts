@@ -1,13 +1,13 @@
 version: "3.3"
 services:
-
-  mysql-local:
-    image: mysql:8.0.17
-    environment:
-      MYSQL_ROOT_PASSWORD: band_mate
-      MYSQL_DATABASE: band_mate
-    ports:
-      - "3308:3306"
+#
+#  mysql-local:
+#    image: mysql:8.0.17
+#    environment:
+#      MYSQL_ROOT_PASSWORD: band_mate
+#      MYSQL_DATABASE: band_mate
+#    ports:
+#      - "3308:3306"
 
   phpmyadmin:
     image: phpmyadmin

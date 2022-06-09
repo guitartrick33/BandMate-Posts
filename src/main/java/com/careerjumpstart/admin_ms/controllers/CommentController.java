@@ -52,13 +52,13 @@ public class CommentController {
         try {
             comments = commentService.findAll();
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answers repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         if(comments.isEmpty()) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "No answers found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "No posts found"), HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(new ResponseWithMessage<>(comments, null), HttpStatus.OK);
         }
@@ -70,13 +70,13 @@ public class CommentController {
         try {
             result = commentService.findById(id);
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answer repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         if(result.isEmpty()) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answer not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post not found"), HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(new ResponseWithMessage<>(result, null), HttpStatus.OK);
         }
@@ -89,13 +89,13 @@ public class CommentController {
         try {
             results = commentService.findCommentsByUsername(username);
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answers repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Posts repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         if(results.isEmpty()) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "No answers found for this user"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "No posts found for this user"), HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(new ResponseWithMessage<>(results, null), HttpStatus.OK);
         }
@@ -107,13 +107,13 @@ public class CommentController {
         try {
             result = commentService.findCommentsByPost_Id(id);
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answer repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         if(result.isEmpty()) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answer not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post not found"), HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(new ResponseWithMessage<>(result, null), HttpStatus.OK);
         }
@@ -128,9 +128,9 @@ public class CommentController {
             }
             comment.setUsername(username);
             Comment newComment = commentService.createComment(comment);
-            return new ResponseEntity<>(new ResponseWithMessage<>(newComment, "Answer successfully created"), HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseWithMessage<>(newComment, "Post successfully created"), HttpStatus.OK);
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answers repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Posts repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (Exception e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -142,12 +142,12 @@ public class CommentController {
         try {
             if(commentService.exists(id)) {
                 Comment updatedComment = commentService.updateComment(id, comment);
-                return new ResponseEntity<>(new ResponseWithMessage<>(updatedComment, "Answer successfully updated"), HttpStatus.OK);
+                return new ResponseEntity<>(new ResponseWithMessage<>(updatedComment, "Post successfully updated"), HttpStatus.OK);
             } else {
-                return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answer not found"), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post not found"), HttpStatus.NOT_FOUND);
             }
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answers repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -160,12 +160,12 @@ public class CommentController {
         try {
             if(commentService.exists(id)) {
                 commentService.deleteComment(id);
-                return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answer successfully deleted"), HttpStatus.OK);
+                return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post successfully deleted"), HttpStatus.OK);
             } else {
-                return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answer not found"), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(new ResponseWithMessage<>(null, "Post not found"), HttpStatus.NOT_FOUND);
             }
         } catch (DataAccessException e) {
-            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Answers repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
+            return new ResponseEntity<>(new ResponseWithMessage<>(null, "Posts repository not responding"), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(new ResponseWithMessage<>(null, "Something went wrong..."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
