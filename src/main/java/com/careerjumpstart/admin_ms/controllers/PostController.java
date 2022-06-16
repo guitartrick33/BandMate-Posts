@@ -41,6 +41,11 @@ public class PostController {
         return response.toString() + " testyola";
     }
 
+    @GetMapping("/deploy")
+    public String deployment() {
+        return "Deployment successful v1.";
+    }
+
     @GetMapping
     public ResponseEntity<ResponseWithMessage<List<Post>>> getAll(){
         List<Post> posts;
