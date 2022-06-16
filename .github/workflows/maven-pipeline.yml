@@ -63,6 +63,6 @@ jobs:
   # Deploy the Docker image to the GKE cluster
       - name: Deploy
         run: |
-          gcloud container clusters get-credentials bandmate-posts --zone europe-west4-a
+          gcloud container clusters get-credentials bandmate-auth --zone europe-west4-a
           sleep 5s
           kubectl set image deployment/bandmate-posts bandmate-posts=europe-west4-docker.pkg.dev/bandmate-backend/bandmate-posts/bandmate-posts:${{ github.sha }}
