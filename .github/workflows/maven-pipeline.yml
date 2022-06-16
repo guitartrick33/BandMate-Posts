@@ -36,7 +36,7 @@ jobs:
         id: 'auth'
         uses: 'google-github-actions/auth@v0'
         with:
-          credentials_json: 'a74cb9c8155220d813cd2110f40639248caadcd6'
+          credentials_json: '${{ secrets.GCP_KEY }}'
           create_credentials_file: true
 
   # Setting up tools for iteracting with google cloud services
